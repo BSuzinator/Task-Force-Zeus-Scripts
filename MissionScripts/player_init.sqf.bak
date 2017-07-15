@@ -1,0 +1,537 @@
+// null = [this] execVM "MissionScripts\player_init.sqf";
+
+_unit = _this select 0;
+
+removeAllWeapons _unit;
+removeGoggles _unit; 
+removeVest _unit;
+removeUniform _unit;
+removeHeadGear _unit;
+removeBackPack _unit;	
+
+_unit unlinkItem "NVGoggles";
+_unit unlinkItem "ItemRadio";
+_unit unlinkItem "tf_microdagr";
+
+_unit addItem "Item_tf_anprc152";
+_unit linkItem "rhsusf_ANPVS_14";
+
+switch (typeOf _unit) do {
+
+	// Battlegroup Commander/Platoon Leader
+	case "B_officer_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";	
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";	
+		
+		_unit addWeapon "ACE_Vector";		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+	};
+	// Squad Leader
+	case "B_Soldier_SL_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";		
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";	
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "ACE_Vector";		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+	};
+	// Team Leader
+	case "B_Soldier_TL_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";		
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+	};
+	// Automatic Rifleman
+	case "B_soldier_AR_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";		
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m249_pip_S";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "rhs_200rnd_556x45_T_SAW";
+		
+		{_unit addMagazine "rhs_200rnd_556x45_T_SAW"} foreach [1,2];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];		
+	};
+	// Grenadier
+	case "B_Soldier_GL_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";		
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4_m203";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+		
+		{_unit addMagazine "1Rnd_HE_Grenade_shell"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		{_unit addMagazine "1Rnd_Smoke_Grenade_shell"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		{_unit addMagazine "1Rnd_HE_Grenade_shell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "1Rnd_SmokeRed_Grenade_shell"} foreach [1,2,3,4,5];		
+	};
+	case "B_soldier_M_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";		
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4_m203";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+		
+		{_unit addMagazine "1Rnd_HE_Grenade_shell"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		{_unit addMagazine "1Rnd_Smoke_Grenade_shell"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		{_unit addMagazine "1Rnd_HE_Grenade_shell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "1Rnd_SmokeRed_Grenade_shell"} foreach [1,2,3,4,5];		
+	};
+	// Rifleman
+	case "B_Soldier_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];		
+	};
+	// Medic
+	case "B_medic_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];	
+		{_unit addItem "ACE_epinephrine"} foreach [1,2,3,4,5,6,7,8,9,10];
+		{_unit addItem "ACE_bloodIV"} foreach [1,2,3];
+	};	
+	// Combat Engineer
+	case "B_soldier_exp_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];	
+		
+		_unit addItem "ToolKit";
+		_unit addItem "ACE_Clacker";
+		_unit addItem "ACE_M26_Clacker";
+		
+		{_unit addMagazine "DemoCharge_Remote_Mag"} foreach [1,2,3];	
+	};
+
+	// Repair Engineer
+	case "B_soldier_repair_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+		
+		_unit addItem "ToolKit";
+	};
+
+	// Artillery Gunner
+	case "B_Soldier_A_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+		
+		_unit addItem "ACE_RangeTable_82mm";
+		_unit addItem "ACE_RangeCard";
+	};
+	
+	// Tank Crewman
+	case "B_crew_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "H_HelmetCrew_B";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];
+		
+		_unit addItem "ToolKit";
+	};
+	// Helicopter Pilot
+	case "B_Helipilot_F" : {
+		_unit forceAddUniform "U_B_HeliPilotCoveralls";		
+		_unit addBackpack "B_Parachute";
+		_unit addHeadgear "H_PilotHelmetHeli_B";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+	};
+	// Helicopter Crew
+	case "B_helicrew_F" : {
+		_unit forceAddUniform "U_B_HeliPilotCoveralls";			
+		_unit addBackpack "B_Parachute";
+		_unit addHeadgear "H_PilotHelmetHeli_B";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+	};
+	// Fixed Wing Pilot
+	case "B_Pilot_F" : {
+		_unit forceAddUniform "U_B_PilotCoveralls";		
+		_unit addBackpack "B_Parachute";
+		_unit addHeadgear "H_PilotHelmetFighter_B";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+	};
+	// JTAC
+	case "B_recon_JTAC_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "ACE_Vector";		
+		_unit addWeapon "rhs_weap_m4_m203";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];	
+		{_unit addMagazine "1Rnd_HE_Grenade_shell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "1Rnd_Smoke_Grenade_shell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "1Rnd_HE_Grenade_shell"} foreach [1,2,3,4,5];	
+		{_unit addMagazine "1Rnd_SmokeRed_Grenade_shell"} foreach [1,2,3,4,5];		
+	};
+	// Sniper
+	case "B_sniper_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_M107";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_anpas13gv1";				
+		_unit addPrimaryWeaponItem "CUP_20Rnd_TE1_Red_Tracer_762x51_M110";
+		
+		{_unit addMagazine "rhsusf_mag_10Rnd_STD_50BMG_M33"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];		
+	};
+	// Ranger
+	case "B_recon_F" : {
+		_unit forceAddUniform "rhs_uniform_cu_ocp_1stcav";	
+		_unit addVest "rhsusf_iotv_ocp_Rifleman";			
+		_unit addBackpack "B_AssaultPack_mcamo";
+		_unit addHeadgear "rhsusf_ach_helmet_ocp";	
+		_unit addGoggles "rhs_googles_clear";
+		
+		{_unit addItem "ACE_fieldDressing"} foreach [1,2,3,4,5,6,7,8,9,10,11,12,13,14];	
+		{_unit addItem "ACE_morphine"} foreach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addItem "ACE_DAGR";		
+		_unit addItem "ACE_EarPlugs";		
+		_unit addItem "ACE_IR_Strobe_Item";		
+		_unit addItem "ACE_MapTools";		
+		_unit addItem "ACE_microDAGR";		
+		_unit addItem "ACE_tourniquet";
+		
+		_unit addWeapon "rhs_weap_m4";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_ACOG_RMR";		
+		_unit addPrimaryWeaponItem "rhsusf_acc_nt4_black";		
+		_unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_Tracer_Red";
+		
+		{_unit addMagazine "30Rnd_556x45_Stanag_Tracer_Red"} foreach [1,2,3,4,5,6,7];	
+		{_unit addMagazine "SmokeShell"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellRed"} foreach [1,2];	
+		{_unit addMagazine "SmokeShellBlue"} foreach [1,2];	
+		{_unit addMagazine "rhs_mag_m67"} foreach [1,2];		
+	};	
+};
+
+[_unit] execVM "MissionScripts\SpawnImmunity.sqf"; // Invulnerable on spawn
+
+st_interact_allow_group_interactions = false;
+
+// Initialize settings on respawn
+_unit addEventHandler ["Respawn",
+{
+	_unit = _this select 0;	
+	
+	[_unit] execVM "MissionScripts\SpawnImmunity.sqf"; // Invulnerable on spawn		
+		
+	st_interact_allow_group_interactions = false;
+}]; 
+
+titleText ["ATTENTION! - Check you map for all Radio Frequencies used. They are all pre-set.", "PLAIN", 3];

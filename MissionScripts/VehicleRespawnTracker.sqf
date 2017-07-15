@@ -1,0 +1,174 @@
+if (!isServer) exitWith {};
+
+_unit = _this select 0;
+
+_posX = (getPos _unit) select 0;
+_posY = (getPos _unit) select 1;
+_heading = getDir _unit;
+_unitType = typeOf _unit;
+
+_marker = createMarker[format["respawn_%1",_unitType + str _posX + str _posY],[_posX,_posY,0]];
+_marker setMarkerShape "ICON";
+_marker setMarkerType "hd_dot";
+_marker setMarkerColor "ColorCivilian";
+_marker setMarkerAlpha 0;
+
+_respawnTimer = 300;
+_abandonedTimer = 1800;
+
+switch (_unitType) do {
+	case "RHS_AH64D_wd" : {_respawnTimer = 900;};
+	//case "FIR_F16C" : {_respawnTimer = 600;};	
+	case "RHS_A10_AT" : {_respawnTimer = 900;};	
+	case "RHS_MELB_AH6M_H" : {_respawnTimer = 600;};	
+	case "RHS_UH60M" : {_respawnTimer = 600;};		
+	case "rhsusf_m1a1aim_tuski_wd" : {_respawnTimer = 600;};
+	case "RHS_M2A3_BUSKIII_wd" : {_respawnTimer = 600;};	
+	case "rhsusf_mkvsoc" : {_abandonedTimer = 60;};
+};
+
+while {true} do {
+
+	if ((_unitType != "B_Slingload_01_Ammo_F") and (_unitType != "B_Slingload_01_Fuel_F") and (_unitType != "B_Slingload_01_Repair_F") and (_unitType != "B_Slingload_01_Cargo_F")) then {
+		if ((alive _unit) and (count crew _unit == 0)) then {
+			_abandonedTimer = _abandonedTimer - 60;
+		}
+		else {
+			_abandonedTimer = 1800;
+			switch (_unitType) do {
+				case "rhsusf_M977A4_AMMO_BKIT_usarmy_wd" : {
+					_abandonedTimer = 3600;
+				};	
+				case "rhsusf_M978A4_usarmy_wd" : {
+					_abandonedTimer = 3600;
+				};	
+				case "rhsusf_mkvsoc" : {_abandonedTimer = 60;};
+			};
+		};
+	
+		if 	((alive _unit) and (_abandonedTimer <= 0)) then {
+			_unit setDir _heading;
+			_unit setPos [_posX,_posY,0.5];			
+			
+			_unit setDamage 0;
+			_unit setFuel 1;
+			_unit setVehicleAmmo 1;
+			
+			_abandonedTimer = 1800;
+			
+			switch (_unitType) do {
+				case "rhsusf_M977A4_AMMO_BKIT_usarmy_wd" : {
+					_abandonedTimer = 3600;
+				};	
+				case "rhsusf_M978A4_usarmy_wd" : {
+					_abandonedTimer = 3600;
+				};	
+				case "CUP_B_RHIB_USMC" : {_abandonedTimer = 60;};
+			};
+		};
+	};
+
+	if (!alive _unit) then {
+		_respawnTimer = _respawnTimer - 60;
+		
+		_marker setMarkerAlpha 1;
+		_marker setMarkerText format["%1 - Respawn in %2s",getText(configfile >> "CfgVehicles" >> typeOf(_unit) >> "displayName"), _respawnTimer];
+		
+		if (_respawnTimer <= 0) then {
+			_marker setMarkerAlpha 0;
+		
+			deleteVehicle _unit;
+			_unit = _unitType createVehicle [0,0,0];
+			_unit setDir _heading;
+			_unit setPos [_posX,_posY,0.5];			
+			//null = [_unit] execVM "MissionScripts\EmptyInventory.sqf";
+			//null = [_unit] execVM "MissionScripts\VehicleNoFire.sqf";
+			//null = [_unit] execVM "MissionScripts\VehicleCrewRestrictions.sqf";
+			//null = [_unit] execVM "MissionScripts\VehicleTracker.sqf";
+			null = [_unit] execVM "MissionScripts\disableVehCookoff.sqf";
+								
+			switch (_unitType) do {			
+
+				case "B_G_Offroad_01_repair_F" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};	
+				case "B_G_Van_01_fuel_F" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};					
+				case "B_Slingload_01_Ammo_F" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};	
+				case "B_Slingload_01_Fuel_F" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};	
+				case "B_Slingload_01_Repair_F" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};	
+				case "B_Slingload_01_Cargo_F" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};					
+				case "B_CargoNet_01_ammo_F" : {					
+					null = [_unit] execVM "MissionScripts\Arsenal.sqf";
+				};
+				case "rhsusf_M977A4_AMMO_BKIT_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};	
+				case "rhsusf_M978A4_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};	
+				case "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};	
+				case "rhsusf_M978A4_BKIT_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};	
+				case "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\ResupplyTruck.sqf";
+				};				
+				case "rhsusf_m1025_w_mk19" : {
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};	
+				case "rhsusf_m1025_w_m2" : {
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};				
+				case "rhsusf_M1237_MK19_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};		
+				case "rhsusf_M1237_M2_usarmy_wd" : {
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};
+				case "RHS_M2A3_BUSKIII_wd" : {
+					null = [_unit] execVM "MissionScripts\InfSupplies.sqf";
+				};											
+			};
+			
+			_respawnTimer = 300;	
+			_abandonedTimer = 1800;
+			
+			switch (_unitType) do {
+				case "RHS_AH64D_wd" : {_respawnTimer = 900;};
+				//case "FIR_F16C" : {_respawnTimer = 600;};	
+				case "RHS_A10_AT" : {_respawnTimer = 900;};	
+				case "RHS_MELB_AH6M_H" : {_respawnTimer = 600;};	
+				case "RHS_UH60M" : {_respawnTimer = 600;};					
+				case "rhsusf_m1a1aim_tuski_wd" : {_respawnTimer = 600;};
+				case "RHS_M2A3_BUSKIII_wd" : {_respawnTimer = 600;};	
+				case "rhsusf_mkvsoc" : {_abandonedTimer = 60;};
+			};
+			
+			switch (_unitType) do {
+				case "rhsusf_M977A4_AMMO_BKIT_usarmy_wd" : {
+					_abandonedTimer = 3600;
+				};	
+				case "rhsusf_M978A4_usarmy_wd" : {
+					_abandonedTimer = 3600;
+				};	
+				case "rhsusf_mkvsoc" : {_abandonedTimer = 60;};
+			};
+		};
+	};
+	
+	sleep 60;
+};

@@ -1,0 +1,17 @@
+[dt,3] call BIS_fnc_dataTerminalAnimate;
+			sleep 2;
+			with uiNamespace do {
+				disableserialization; 
+				dt setObjectTexture [0,"\A3\Missions_F_EPA\video\A_in_intro.ogv"];
+				dt setObjectTexture [1,"\A3\Missions_F_EPA\video\A_in_intro.ogv"]; ////added this texture selection to make both monitors showing the video
+				1100 cutRsc ["RscMissionScreen","PLAIN"];
+				_scr = BIS_RscMissionScreen displayCtrl 1100;
+				_scr ctrlSetPosition [-10,-10,0,0];
+				_scr ctrlSetText "\A3\Missions_F_EPA\video\A_in_intro.ogv";
+				_scr ctrlAddEventHandler ["VideoStopped", {
+					(uiNamespace getVariable "BIS_RscMissionScreen") closeDisplay 1;
+				}];
+				_scr ctrlCommit 0;
+			};
+			sleep 10;
+		_closeAction = [[dt,["Close",[_dt,0] call BIS_fnc_dataTerminalAnimate;]],"addAction",true] call BIS_fnc_MP;

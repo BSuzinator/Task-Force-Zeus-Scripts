@@ -1,0 +1,30 @@
+//Title and second message
+OnLoadMission = "Task Force Zeus | Episode 1";
+OnLoadName = "The Invasion";
+
+//Respawn Shtuff
+respawn = 3;
+respawnOnStart = 0;
+respawnTemplates[] = {"MenuPosition"};
+respawnButton = 1;
+
+//Disable Chat Channels
+//disableChannels[]={{0,true,true},{1,false,true},{2,true,true},{3,true,true},{4,true,true},{5,true,true},{6,true,true}};			//Modded Chat Channels
+disableChannels[]={{0,true,true},{1,false,true},{2,true,true},{6,true,true}};													//Un-Modded Chat Channels
+
+//Include Dialogs
+#include "taw_vd\dialog.hpp"
+#include "scripts\spectator\spectating.hpp"     		// Kegetys Spectator Script
+#include "R3F_LOG\desc_include.h"
+
+//Functions
+class CfgFunctions
+{
+	#include "taw_vd\CfgFunctions.hpp"		
+};
+class RscTitles
+	{
+	
+	#include "dialog\statusBar.hpp"
+	
+	};

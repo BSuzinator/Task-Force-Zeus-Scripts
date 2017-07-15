@@ -1,0 +1,4 @@
+this addAction ["<t color='#0a08a5'>HALO Jump</t>", "ghst_halo.sqf"];
+this addAction["<t color='#FF0000'>Medical Assistance", "medical.sqf"];
+g3 animate ["Door_1_rot", 1]
+g3 animate ["Door_1_rot", 0]
